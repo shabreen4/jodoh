@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Jodoh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Aplikasi Jodoh</h1>
+
+    <!-- Input Pria -->
+    <label for="namaPria">Nama Pria:</label>
+    <input type="text" id="namaPria" placeholder="Nama Pria" required>
+
+    <label for="tanggalLahirPria">Tanggal Lahir Pria:</label>
+    <input type="date" id="tanggalLahirPria" required>
+
+    <!-- Input Wanita -->
+    <label for="namaWanita">Nama Wanita:</label>
+    <input type="text" id="namaWanita" placeholder="Nama Wanita" required>
+
+    <label for="tanggalLahirWanita">Tanggal Lahir Wanita:</label>
+    <input type="date" id="tanggalLahirWanita" required>
+
+    <!-- Tombol Hasil -->
+    <button onclick="cocokkan()">Cek Hasil</button>
+
+    <!-- Hasil -->
+    <div class="result" id="hasil"></div>
+</div>
+
+<script>
+    function cocokkan() {
+        const namaPria = document.getElementById("namaPria").value;
+        const tanggalLahirPria = new Date(document.getElementById("tanggalLahirPria").value);
+        const namaWanita = document.getElementById("namaWanita").value;
+        const tanggalLahirWanita = new Date(document.getElementById("tanggalLahirWanita").value);
+
+        if (!namaPria || !tanggalLahirPria || !namaWanita || !tanggalLahirWanita) {
+            alert("Mohon lengkapi semua data!");
+            return;
+        }
+
+        // Daftar hasil pencocokan
+        const hasilCocok = [
+            "Cocok, pasangan sejati!",
+            "Kurang cocok, perlu usaha lebih.",
+            "Sempurna, jodoh dunia akhirat!",
+            "Setia, tak akan pernah berpisah.",
+            "Bucin banget, selalu berdua!",
+            "Selingkuh, hati-hati!",
+            "Bermasalah, perlu komunikasi lebih.",
+            "Teman hidup yang sempurna!",
+            "Tunggu dulu, apakah ini cinta sejati?",
+            "Tukang drama, banyak konflik!",
+            "Luar biasa, pasangan impian!"
+        ];
+
+        // Menghasilkan hasil acak dari daftar cocok
+        const randomIndex = Math.floor(Math.random() * hasilCocok.length);
+        const hasil = hasilCocok[randomIndex];
+
+        // Menampilkan hasil
+        document.getElementById("hasil").innerHTML = `Hasil untuk ${namaPria} dan ${namaWanita}:<br><strong>${hasil}</strong>`;
+    }
+</script>
+
+</body>
+</html>
